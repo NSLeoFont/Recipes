@@ -4,13 +4,17 @@ import com.leofont.recipes.domain.*;
 import com.leofont.recipes.repositories.CategoryRepository;
 import com.leofont.recipes.repositories.RecipeRepository;
 import com.leofont.recipes.repositories.UnitOfMeasureRepository;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class RecipeBootstrap {
+@Component
+public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     private final CategoryRepository categoryRepository;
     private final RecipeRepository recipeRepository;
@@ -20,6 +24,12 @@ public class RecipeBootstrap {
         this.categoryRepository = categoryRepository;
         this.recipeRepository = recipeRepository;
         this.unitOfMeasureRepository = unitOfMeasureRepository;
+    }
+
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
+
+        recipeRepository.saveAll(getRecipes());
     }
 
     private List<Recipe> getRecipes() {
@@ -39,7 +49,7 @@ public class RecipeBootstrap {
             throw new RuntimeException("Expected UOC not found");
         }
 
-        Optional<UnitOfMeasure>teaSpoonOptional = unitOfMeasureRepository.findByDescription("TeaSpoon");
+        Optional<UnitOfMeasure>teaSpoonOptional = unitOfMeasureRepository.findByDescription("Teas   poon");
 
         if(!teaSpoonOptional.isPresent()) {
             throw new RuntimeException("Expected UOC not found");

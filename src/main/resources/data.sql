@@ -9,4 +9,5 @@ INSERT into unit_of_measure (description) VALUES ('Cup');
 INSERT into unit_of_measure (description) VALUES ('Pinch');
 INSERT into unit_of_measure (description) VALUES ('Ounce');
 INSERT into unit_of_measure (description) VALUES ('Pint');
+INSERT into unit_of_measure (description) VALUES ('Each');
 
