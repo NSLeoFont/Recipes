@@ -49,7 +49,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
             throw new RuntimeException("Expected UOC not found");
         }
 
-        Optional<UnitOfMeasure>teaSpoonOptional = unitOfMeasureRepository.findByDescription("Teas   poon");
+        Optional<UnitOfMeasure>teaSpoonOptional = unitOfMeasureRepository.findByDescription("Teaspoon");
 
         if(!teaSpoonOptional.isPresent()) {
             throw new RuntimeException("Expected UOC not found");
@@ -117,6 +117,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "\n" +
                 "Read more: http://www.simplyrecipes.com/recipes/perfect_guacamole/#ixzz4jvpiV9Sd");
 
+        // Needed for bidirectional - Should be one method call
         Notes guacNotes = new Notes();
         guacNotes.setRecipeNotes("For a very quick guacamole just take a 1/4 cup of salsa and mix it in with your mashed avocados.\n" +
                 "Feel free to experiment! One classic Mexican guacamole has pomegranate seeds and chunks of peaches in it (a Diana Kennedy favorite). Try guacamole with added pineapple, mango, or strawberries.\n" +
