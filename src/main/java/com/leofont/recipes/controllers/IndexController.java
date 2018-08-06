@@ -5,12 +5,14 @@ import com.leofont.recipes.domain.UnitOfMeasure;
 import com.leofont.recipes.repositories.CategoryRepository;
 import com.leofont.recipes.repositories.UnitOfMeasureRepository;
 import com.leofont.recipes.services.RecipeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Optional;
 
+@Slf4j
 @Controller
 public class IndexController {
 
@@ -38,6 +40,8 @@ public class IndexController {
         //System.out.println("UOM id is: " + unitOfMeasure.get().getId());
 
         model.addAttribute("recipes", recipeService.getRecipes());
+
+        log.debug("Into the controller recipes");
 
         return "index";
     }
